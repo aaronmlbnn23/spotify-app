@@ -1,0 +1,7 @@
+export { default as Profile } from './Profile'
+export { default as Playlists } from './Playlists'
+export { default as TopArtists } from './TopArtists'
+export { default as TopTracks } from './TopTracks'
+export { default as SpecificPlaylist } from './SpecificPlaylist'
+export { default as LandingPage } from './LandingPage'
+export { default as Search} from '../components/search'

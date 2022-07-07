@@ -1,0 +1,30 @@
+.search-wrapper{
+    padding: 20px;
+    .searchInput{
+        outline: none;
+        padding: 10px 20px;
+        border-radius: var(--radius-xl);
+    }
+
+    
+}
+
+.track-wrapper{
+    cursor: pointer;
+}
+
+.tracks{
+    display: flex;
+    max-width: 400px;
+}
+
+.artist-wrapper{
+    display: inline-block;
+    
+}
+
+.album-image{
+    max-width: 64px;
+    width: 100%;
+    height: auto;
+}

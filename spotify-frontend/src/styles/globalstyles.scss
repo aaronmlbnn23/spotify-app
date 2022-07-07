@@ -1,0 +1,43 @@
+:root {
+    --primary: #1db954;
+    --dark: #191414;
+    --light: #ffffff;
+
+    --outline: 2px solid var(--light)
+    
+    --radius-sm: 5px;
+    --radius-md: 8px;
+    --radius-xl: 10px;
+
+
+    --fs-xxs: 10px;
+    --fs-xs: 12px;
+    --fs-sm: 14px;
+    --fs-md: 16px;
+    --fs-lg: 18px;
+    --fs-xl: 20px;
+    --fs-xxl: 22px;
+
+    @media (min-width: 768px) {
+        --fs-xxs: 8px;
+        --fs-xs: 10px;
+        --fs-sm: 12px;
+        --fs-md: 14px;
+        --fs-lg: 16px;
+        --fs-xl: 18px;
+        --fs-xxl: 20px;
+    }
+}
+
+*, *::after, *::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding:0;
+}
+
+html, body {
+    font-size: 16px;
+    
+}
+@import './profile.scss';
+@import './search.scss'
