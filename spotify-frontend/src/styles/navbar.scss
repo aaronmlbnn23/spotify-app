@@ -1,0 +1,15 @@
+.toolbar-wrapper{
+    position: fixed;
+    width: 100%;
+    height: var(--navbar-h);
+
+    .toggle-icon {
+        color: black;
+        width: 34px;
+        height: 34px;
+        cursor: pointer;
+        &:hover{
+            color: var(--primary);
+        }
+    }
+}

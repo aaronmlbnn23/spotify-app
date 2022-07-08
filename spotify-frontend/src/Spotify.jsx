@@ -121,4 +121,6 @@ axios.defaults.headers['Authorization'] = `Bearer ${accessToken}`;
 axios.defaults.headers['Content-Type'] = 'application/json';
 
 export const getCurrentUserProfile = () => axios.get('/me')
+export const getFollowedArtists = () => axios.get('/me/following?type=artist')
 export const fetchSearchResults = (q) => axios.get(`/search?q=${q}&type=track&limit=5`)
+export const getPlaylist = () => axios.get('/me/playlists')

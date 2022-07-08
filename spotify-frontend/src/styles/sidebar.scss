@@ -1,0 +1,112 @@
+
+.sidebar-wrapper{
+    position:  fixed;
+    height: 100vh;
+    background-color: black;
+    max-width: var(--sidebar-w);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+
+    .user-wrapper {
+        display: flex;
+        align-items: center;
+        margin-top: 30px;
+        flex-direction: column;
+        width: 100%;
+    
+        .avatar{
+            margin-bottom: 20px;
+            width: 110px;
+            height: 110px;
+            object-fit: cover;
+            border-radius: 50%;
+            outline: 2px solid var(--primary);
+        }
+        .username {
+         
+            font-weight: 500;
+            color: var(--foreground);
+            z-index:  1;
+        }
+
+
+        .stats-wrapper{
+            cursor: default;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            width: 100%;
+            text-align: center;
+            .stats-number{
+                font-size: var(--fs-xxl);
+                font-weight: 500;
+                color: var(--primary);
+                text-align: center;
+            }
+
+            .stats-label {
+                font-weight: 400;
+                font-size: var(--fs-md);
+                color: var(--light);
+            }
+
+
+        }
+    }
+
+    .menu-wrapper{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 50px;
+
+        & > * {
+            text-align: center;
+            width: 100%;
+            text-decoration: none;
+            font-size: var(--fs-xxl);
+            color: var(--foreground);
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 150px;
+
+            &:hover{
+                background-color: var(--background);
+            }
+        }
+
+    }
+    .logoutButton {
+        position: absolute;
+        cursor: pointer;
+        display: block;
+        max-width: calc(100% - 40px);
+        width: 100%;
+        bottom: 0;
+        outline: none;
+        border: none;
+        border-radius: 150px;
+        font-size: var(--fs-lg);
+        color: var(--foreground);
+        background-color: var(--primary);
+        padding: 20px;
+        margin-bottom: 20px;
+        
+    }
+
+}
+aside{
+    transition: all 0.3s ease-in-out;
+}
+aside.collapse {
+    transition: all 0.3s ease-in-out;
+    transform: translateX(-100%);
+}
+
+aside.collapse~main{
+    width: 100%;
+    margin-left: 0;
+}

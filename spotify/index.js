@@ -27,7 +27,7 @@ const stateKey = 'spotify_auth_state';
 app.get('/login', (req, res) => {
     const state = generateRandomString(16);
     res.cookie(stateKey, state)
-    const scope = 'streaming user-read-email user-read-private user-library-read user-library-modify user-read-playback-state user-modify-playback-state'
+    const scope = 'streaming user-read-email user-read-private user-library-read user-library-modify user-read-playback-state user-modify-playback-state user-follow-read'
     const queryParams = querystring.stringify({
         client_id: CLIENT_ID,
         response_type: 'code',

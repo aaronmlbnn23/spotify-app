@@ -1,0 +1,9 @@
+.recentplayed-wrapper{
+    position: fixed;
+    height: 100vh;
+    max-width: 350px;
+    width: 100%;
+    flex-grow: 1;
+    right: 0;
+    background-color: var(--light);
+}

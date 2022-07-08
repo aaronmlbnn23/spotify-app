@@ -2,9 +2,9 @@ import React from 'react'
 
 const LandingPage = () => {
   return (
-    <div>
+    <div className='landing-page-wrapper'>
         <a
-            className="App-link"
+            className="login-link"
             href="http://localhost:8888/login"
             target="_blank"
             rel="noopener noreferrer"

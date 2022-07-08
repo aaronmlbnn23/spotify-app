@@ -2,7 +2,7 @@ import React from 'react'
 
 const TopTracks = () => {
   return (
-    <div>TopTracks</div>
+    <div className='toptracks-wrapper outlet'>TopTracks</div>
   )
 }
 

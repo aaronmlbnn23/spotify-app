@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react'
-import { fetchSearchResults } from '../Spotify';
+import { fetchSearchResults,  accessToken  } from '../Spotify';
 import { catchErrors } from '../utilities'
-import SpotifyWebPlayer from 'react-spotify-web-playback';
-import { accessToken } from '../Spotify';
+
+import Player from './player'
 const search = () => {
     const [search, setSearch] = useState();
     const [searchResults, setSearchResults] = useState([]);
     const [playTrack, setPlayTrack] = useState()
-    const [token, setToken] = useState()
-    console.log(searchResults)
+    
+    const chooseTrack = (track) => {
+        setPlayTrack(track)
+        setSearch('')
+    }
+    
+   
 
-  
-    useEffect(() => {
-        setToken(accessToken)
-      }, [])
-
-
+ 
     useEffect(() => {
         if (!search) return setSearchResults([])
         let cancel = false
@@ -50,7 +50,7 @@ const search = () => {
                 {
                     searchResults.map((track) => (
                         <div className="track-wrapper" key={track.uri}>
-                            <div className='tracks' onClick={() => setPlayTrack(track.uri)}>
+                            <div className='tracks' onClick={() => chooseTrack(track)}>
                                 <img className="album-image" src={track.albumUrl} alt='Album' />
 
                                 <div className='artist-wrapper'>
@@ -64,10 +64,7 @@ const search = () => {
                     ))
                 }
             </div>
-                < SpotifyWebPlayer showSaveIcon
-                token={token}
-                uri={playTrack}
-                />
+                < Player trackUri={playTrack?.uri}/>
         </>
     )
 }
