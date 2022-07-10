@@ -1,31 +1,66 @@
-.search-wrapper{
+.search-wrapper {
+    position: absolute;
     padding: 20px;
-    .searchInput{
-        
-        outline: none;
-        padding: 10px 20px;
-        border-radius: var(--radius-xl);
+    background-color: var(--dark);
+    width: 100%;
+    height: var(--navbar-h);
+
+    .searchInput {
+        width: 100%;
+        padding: 10px;
+        border-radius: 150px;
+        transition: all 0.2s ease-in;
+        &:focus {
+
+            outline-offset: 3px;
+            outline: 1px solid var(--primary);
+            border: none;
+        }
     }
 
-    
-}
+    .search-results-wrapper {
+        background-color: black;
+        margin-top: 10px;
+    }
 
-.track-wrapper{
-    cursor: pointer;
-}
+    .track-wrapper {
+        background-color: black;
+        
+        z-index: 10;
+        cursor: pointer;
+        padding: 10px;
+        display: block;
 
-.tracks{
-    display: flex;
-    max-width: 400px;
-}
 
-.artist-wrapper{
-    display: inline-block;
-    
-}
+        .tracks {
+            display: flex;
+            align-items: center;
+            max-width: 400px;
 
-.album-image{
-    max-width: 64px;
-    width: 100%;
-    height: auto;
+            .album-image {
+                max-width: 50px;
+                width: 100%;
+                height: auto;
+                margin-right: 10px;
+            }
+
+
+            .artist-wrapper {
+                display: inline-block;
+
+                .artist-name{
+                    color: var(--foreground);
+                    font-size: var(--fs-sm);
+                    font-weight: 400;
+                }
+
+                .track-title {
+                    font-weight: 500;
+                    font-size: var(--fs-md);
+                    color: var(--foreground);
+                }
+            }
+
+        }
+    }
 }

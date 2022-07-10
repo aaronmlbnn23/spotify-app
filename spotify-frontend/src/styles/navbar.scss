@@ -2,11 +2,13 @@
     position: fixed;
     width: 100%;
     height: var(--navbar-h);
+    padding: 20px;
 
     .toggle-icon {
-        color: black;
+        color: var(--light);
         width: 34px;
         height: 34px;
+        z-index: 20;
         cursor: pointer;
         &:hover{
             color: var(--primary);

@@ -1,15 +1,17 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
-import { logout, getCurrentUserProfile, getFollowedArtists, accessToken, getPlaylist } from '../Spotify'
+import { logout, getCurrentUserProfile, getFollowedArtists, accessToken, getPlaylists } from '../Spotify'
 import { catchErrors } from '../utilities'
 import { Link } from 'react-router-dom' 
-
+import { TbPlaylist, TbHome2, TbMicrophone2} from 'react-icons/tb'
+import {IoMusicalNotesOutline} from 'react-icons/io5'
 
 const Sidebar = () => {
   const [profile, setProfile] = useState();
   const [followedArtists, setFollowedArtists] = useState()
   const [followers, setFollowers] = useState(0);
   const [playlists, setPlaylists] = useState();
+  
   useEffect(() => {
     
     const fetchProfileData = async () => {
@@ -19,10 +21,9 @@ const Sidebar = () => {
     fetchProfileData();
   }, [])
 
-  console.log(playlists)
   useEffect(() => {
     const fetchPlaylist = async () => {
-      const { data } = await getPlaylist();
+      const { data } = await getPlaylists();
       setPlaylists(data)
     }
     fetchPlaylist()
@@ -72,15 +73,19 @@ const Sidebar = () => {
 
           <div className='menu-wrapper'>
             <Link to='/home' className='menu-item'>
+            <TbHome2/>
               Home
             </Link>
             <Link to='/top-tracks' className='menu-item'>
+              <IoMusicalNotesOutline/>
               Top Tracks
             </Link>
             <Link to='/top-artists' className='menu-item'>
+              <TbMicrophone2/>
               Top Artists
             </Link>
             <Link to='/playlists' className='menu-item'>
+              < TbPlaylist/>
               Playlists
             </Link>
           </div>

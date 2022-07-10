@@ -1,0 +1,127 @@
+.playlist-header {
+    display: flex;
+    align-items: center;    
+    overflow: hidden;
+    flex-wrap: wrap;
+    .playlist-image {
+        width: 250px;
+        height: 250px;
+        margin-right: 20px;
+        @media (max-width: 540px) {
+            margin: 0 auto;
+        }
+    }
+    .playlist-info {
+        display: flex;
+        flex-direction: column;
+        
+        & > * {
+            margin-top: 10px;
+        }
+
+        .playlist-name {
+            font-size: var(--fs-xxl);
+            font-weight: 900;
+            color: var(--foreground);
+        }   
+        .playlist-owner {
+            font-size: var(--fs-md);
+            color: var(--light-dark);
+        }
+
+        .playlist-length {
+            color: var(--foreground);
+        }
+        .playSpotify {
+            max-width: 300px;
+            margin-top: 30px;
+            text-align: center;
+            text-decoration: none;
+            padding: 10px 30px;
+            outline: none;
+            text-transform: uppercase;
+            color: var(--foreground);
+            background-color: var(--primary);
+            border-radius: 20px;    
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            font-weight: 600;
+            
+            &:hover {
+                background-color: var(--darker-primary);
+            }
+        }
+    }
+}
+
+.playlist-tracks-wrapper {
+    margin-top: 40px;
+    max-width: 1080px;
+    width: 100%;
+    overflow: hidden;
+    
+    .playlist-tracks-items {
+        display: grid;
+        grid-template-columns: 1fr max-content;
+        align-items: center;
+   
+        cursor: pointer;
+        padding: 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .items-wrapper {
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            .track-image {
+                width: 92px;
+                height: 92px;
+
+                @media(max-width: 768px) {
+                    width: 64px;
+                    height: 64px;
+                }
+            }
+            .tracks-info {
+                margin-left: 20px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+
+                .track-title {
+                    font-size: var(--fs-lg);
+                    color: var(--foreground);
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    font-weight: 600;
+                }
+
+                .track-artists {
+                    font-size: var(--fs-md);
+                    color: var(--light-dark);
+                    font-weight: 500;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+            
+        }
+        .track-duration {
+            font-size: var(--fs-md);
+            font-weight: 500;
+            color: var(--light-dark);
+            padding: 0 20px;
+        }
+    }
+}

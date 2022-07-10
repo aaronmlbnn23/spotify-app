@@ -9,7 +9,7 @@ const player = ({ trackUri }) => {
 
     useEffect(() => setPlay(true), [trackUri])
     useEffect(() => {
-        setToken(accessToken);
+        //setToken(accessToken);
     }, [])
     
     if(!token) return null
@@ -20,7 +20,7 @@ const player = ({ trackUri }) => {
             callback={state => {
                 if (!state.isPlaying) setPlay(false)
             }}
-            play={play}
+            play={false}
             uris={trackUri ? [trackUri] : []}
         />
     )

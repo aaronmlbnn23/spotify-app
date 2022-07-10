@@ -3,18 +3,24 @@
 
 main {
     margin-left: var(--sidebar-w);
-    max-width: calc(100% - var(--sidebar-w));
-    width: 100%;
     transition: all 0.3s ease-in-out;
     display: flex;
     
+    @media(max-width: 768px) {
+        margin-left: 0;
+    }
 
     
 }
 .outlet{
-    padding: 10px;
-    height: 100vh;
-    max-width: 72em;
+    padding: 20px;
     width: 100%;
     background-color: var(--dark);
+    padding-right: var(--recent-w);
+    height: 100%;
+    margin-top: var(--navbar-h);
+    overflow-x: hidden;
+    @media (max-width: 850px) {
+        padding-right: 20px;
+    }
 }

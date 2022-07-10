@@ -1,9 +1,111 @@
-.recentplayed-wrapper{
+.recentplayed-wrapper {
     position: fixed;
-    height: 100vh;
-    max-width: 350px;
+    max-width: 380px;
     width: 100%;
-    flex-grow: 1;
     right: 0;
-    background-color: var(--light);
+    flex-shrink: 0;
+    overflow: auto;
+    margin-bottom: 0;
+    height: 100%;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    .history-wrapper {
+        margin-top: 80px;
+        padding: 20px;
+        height: 100%;
+
+        .page-title {
+            color: var(--light);
+            font-size: var(--fs-xxl);
+        }
+
+        .recent-container {
+            display: grid;
+            grid-template-columns: 1fr max-content;
+            width: 100%;
+            align-items: center;
+            cursor: pointer;
+            margin-top: 10px;
+            padding: 10px;
+
+            &:hover {
+               
+                background-color: rgba(0, 0, 0, 0.3);
+            }
+            .duration {
+                color: var(--light-dark);
+                padding: 0 12px;
+            }
+
+            
+
+            .recent-info {
+                display: flex;
+                align-items: center;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+
+                .album-image {
+                    width: 56px;
+                    height: auto;
+                    margin-right: 12px;
+                }
+                .recent-artist-wrapper {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    padding-right: 10px;
+                }
+                .recent-title {
+                    font-size: var(--fs-md);
+                    font-weight: 500;
+                    color: var(--foreground);
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                .recent-name {
+                    font-weight: 400;
+                    font-size: var(--fs-sm);
+                    color: var(--light-dark);
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+        }
+
+    }
+
+    .seeMoreButton {
+        position: relative;
+        cursor: pointer;
+        display: block;
+        width: 100%;
+        bottom: 0;
+        outline: none;
+        border: none;
+        border-radius: 150px;
+        font-size: var(--fs-lg);
+        color: var(--foreground);
+        background-color: var(--dark);
+        padding: 20px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background-color: var(--dark);
+        }
+
+    }
+
+    @media(max-width: 850px) {
+        display: none;
+    }
 }
