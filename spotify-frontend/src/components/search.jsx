@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { fetchSearchResults, accessToken } from "../Spotify";
 import { catchErrors } from "../utilities";
-
+import { Link } from 'react-router-dom'
 import Player from "./player";
 const search = () => {
   const [search, setSearch] = useState();
   const [searchResults, setSearchResults] = useState([]);
   const [playTrack, setPlayTrack] = useState();
-  const chooseTrack = (track) => {
-    setPlayTrack(track);
-    setSearch("");
-  };
-
-
+ // const chooseTrack = (track) => {
+   // setPlayTrack(track);
+    //setSearch("");
+ // };
+ //console.log(searchResults)
+  const handleClick = () => {
+    setSearch('')
+  }
   useEffect(() => {
     if (!search) return setSearchResults([]);
     let cancel = false;
@@ -29,6 +31,7 @@ const search = () => {
             return smallest;
           }, track.album.images[0]);
           return {
+            id: track.id,
             artist: artists,
             title: track.name,
             uri: track.uri,
@@ -37,13 +40,14 @@ const search = () => {
         })
       );
     };
+ 
     catchErrors(fetchSearchData());
     return () => (cancel = true);
     
   }, [search]);
- //console.log(searchResults)
+
   return (
-    <>
+    
       <div className="search-wrapper">
         <input
           type="text"
@@ -54,20 +58,20 @@ const search = () => {
         <div className="search-results-wrapper">
           {searchResults && searchResults.map((track) => (
             <div className="track-wrapper" key={track.uri}>
-              <div className="tracks" onClick={() => chooseTrack(track)}>
+              <Link className="tracks"  to={`/track/${track.id}`} onClick={handleClick}>
                 <img className="album-image" src={track.albumUrl} alt="Album" />
 
                 <div className="artist-wrapper">
                   <h3 className="track-title"> {track.title} </h3>
                   <h5 className="artist-name">{track.artist} &nbsp;</h5>
                 </div>
-              </div>
+              </Link>
             </div>
           ))}
         </div>
       </div>
-      <Player trackUri={playTrack?.uri} />
-    </>
+    
+    
   );
 };
 

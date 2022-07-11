@@ -2,7 +2,7 @@ import Search from "../components/Search";
 import { getRecentlyPlayed } from "../Spotify";
 import { useState, useEffect } from "react";
 import { catchErrors, formatDuration } from "../utilities";
-
+import { Link } from 'react-router-dom'
 const RecentPlayed = () => {
   const [recentlyPlayed, setRecentlyPlayed] = useState();
   const [testdata, settestdata] = useState();
@@ -23,6 +23,7 @@ const RecentPlayed = () => {
             return smallest;
           }, data.track.album.images[0]);
           return {
+            id: data.track.id,
             played_at: data.played_at,
             duration: duration,
             artist: artists,
@@ -36,7 +37,7 @@ const RecentPlayed = () => {
     catchErrors(fetchRecent());
   }, [limit]);
 
-  //console.log(testdata);
+ //console.log(testdata);
   const seeLess = () => {
     setLimit(8);
   }
@@ -46,14 +47,14 @@ const RecentPlayed = () => {
   }
   return (
     <div className="recentplayed-wrapper">
-      <Search />
+      
       <div className="history-wrapper">
         <h2 className="page-title">Recently Played</h2>
         <div className="recently-wrapper">
           {recentlyPlayed &&
             recentlyPlayed.map((track) => (
               <div className="recent-container" key={track.played_at}>
-                <div className="recent-info">
+                <Link className="recent-info" to={`/track/${track.id}`}>
                   <img
                     className="album-image"
                     src={track.albumUrl}
@@ -63,7 +64,7 @@ const RecentPlayed = () => {
                     <h3 className="recent-title"> {track.title} </h3>
                     <h5 className="recent-name">{track.artist} &nbsp;</h5>
                   </div>
-                </div>
+                </Link>
                 <h5 className="duration">{track.duration}</h5>
               </div>
             ))}

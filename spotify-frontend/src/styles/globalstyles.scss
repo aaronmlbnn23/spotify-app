@@ -4,13 +4,13 @@
     --dark: #191414;
     --light: #ffffff;
     --light-dark: rgb(155, 155, 155);
-
+    --gray: #1c1c1c;
     --outline: 2px solid var(--light) --radius-sm: 5px;
     --radius-md: 8px;
     --radius-xl: 10px;
 
     --foreground: var(--light);
-    --background: var(--dark);
+    --background: var(--gray);
 
     --fs-xxs: 12px;
     --fs-xs: 14px;
@@ -53,6 +53,25 @@ body {
     background-color: var(--background)
 }
 
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
 @import './sidebar.scss';
 @import './search.scss';
 @import './landingpage.scss';
@@ -62,3 +81,7 @@ body {
 @import './recentplayed.scss';
 @import './playlists.scss';
 @import './playlist.scss';
+@import './track.scss';
+@import './top-tracks.scss';
+@import './top-artists.scss';
+@import './artist.scss';

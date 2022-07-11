@@ -9,3 +9,4 @@ export { default as Layout } from "../pages/Layout";
 export { default as Home } from "../pages/Home";
 export { default as Track } from './Track'
 export { default as Playlist} from './Playlist'
+export {default as TopArtist} from './TopArtist'

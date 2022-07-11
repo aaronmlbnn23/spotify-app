@@ -21,13 +21,13 @@ const generateRandomString = length => {
     }
     return text;
 }
-console.log(generateRandomString(15))
+//console.log(generateRandomString(15))
 const stateKey = 'spotify_auth_state';
 
 app.get('/login', (req, res) => {
     const state = generateRandomString(16);
     res.cookie(stateKey, state)
-    const scope = 'streaming user-read-email user-read-private user-library-read user-library-modify user-read-playback-state user-modify-playback-state user-follow-read user-read-recently-played playlist-read-private   '
+    const scope = 'streaming user-read-email user-read-private user-library-read user-library-modify user-read-playback-state user-modify-playback-state user-follow-read user-read-recently-played playlist-read-private user-top-read'
     const queryParams = querystring.stringify({
         client_id: CLIENT_ID,
         response_type: 'code',
@@ -55,14 +55,13 @@ app.get('/callback', (req, res) => {
     })
         .then(response => {
             if (response.status === 200) {
-                const { access_token, token_type, refresh_token, expires_in } = response.data;
+                const { access_token, refresh_token, expires_in } = response.data;
                 const queryParams = querystring.stringify({
                     access_token,
                     refresh_token,
                     expires_in
                 })
-                res.redirect(`http://localhost:3000/home?${queryParams}`)
-                
+                res.redirect(`http://localhost:3000/?${queryParams}`)
 
             } else {
                 res.redirect(`/?${querystring.stringify({error: 'invalid token'})}`)
@@ -76,7 +75,7 @@ app.get('/callback', (req, res) => {
 
 app.get('/refresh_token', (req, res) => {
     const {refresh_token} = response.data;
-
+    console.log(refresh_token)
     axios({
         method: 'post',
         url: `https://accounts.spotify.com/api/refresh_token?refresh_token=${refresh_token}`,

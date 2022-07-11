@@ -1,6 +1,6 @@
 import React from 'react'
 import {IoMdMenu} from 'react-icons/io'
-
+import Search from '../components/search'
 
 const Navbar = () => {
   
@@ -13,6 +13,7 @@ const Navbar = () => {
   return (
     <div className='toolbar-wrapper'>
         <IoMdMenu className='toggle-icon' onClick={toggleSidebar}/>   
+        <Search />
     </div>
   )
 }

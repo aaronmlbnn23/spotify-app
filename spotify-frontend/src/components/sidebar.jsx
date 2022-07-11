@@ -4,6 +4,7 @@ import { logout, getCurrentUserProfile, getFollowedArtists, accessToken, getPlay
 import { catchErrors } from '../utilities'
 import { Link } from 'react-router-dom' 
 import { TbPlaylist, TbHome2, TbMicrophone2} from 'react-icons/tb'
+import { BsFillPlayFill} from 'react-icons/bs'
 import {IoMusicalNotesOutline} from 'react-icons/io5'
 
 const Sidebar = () => {
@@ -36,11 +37,11 @@ const Sidebar = () => {
       }
       fetchFollowedArtists();
   }, [])
- 
+ // console.log(profile)
  
   return (
     
-      <aside className='sidebar-wrapper'>
+      <div className='sidebar-wrapper'>
           <div className='user-wrapper'>
           {profile &&
 
@@ -88,9 +89,13 @@ const Sidebar = () => {
               < TbPlaylist/>
               Playlists
             </Link>
+            {profile && profile.product == 'premium' ? <Link to='/playlists' className='menu-item'>
+              < BsFillPlayFill/>
+              Sing
+            </Link> : ''}
           </div>
           <button className='logoutButton' onClick={() => logout()}>LOGOUT</button>
-      </aside>
+      </div>
 
 
     

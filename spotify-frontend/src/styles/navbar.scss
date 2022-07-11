@@ -1,8 +1,14 @@
 .toolbar-wrapper{
     position: fixed;
-    width: 100%;
     height: var(--navbar-h);
     padding: 20px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: calc(100% - var(--sidebar-w));
+    transition: all 0.3s ease-in-out;
+    background-color: var(--background);
 
     .toggle-icon {
         color: var(--light);
@@ -13,5 +19,18 @@
         &:hover{
             color: var(--primary);
         }
+    }
+}
+
+aside.collapse~main>.toolbar-wrapper {
+    width: 100%;
+    margin-left: 0;
+}
+
+@media (max-width: 768px) {
+    .toolbar-wrapper {
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
     }
 }

@@ -1,76 +1,15 @@
-.playlist-header {
-    display: flex;
-    align-items: center;    
-    overflow: hidden;
-    flex-wrap: wrap;
-    .playlist-image {
-        width: 250px;
-        height: 250px;
-        margin-right: 20px;
-        @media (max-width: 540px) {
-            margin: 0 auto;
-        }
-    }
-    .playlist-info {
-        display: flex;
-        flex-direction: column;
 
-        @media(max-width: 550px) {
-            align-items: center;
-            text-align: center;
-        }
-        
-        & > * {
-            margin-top: 10px;
-        }
 
-        .playlist-name {
-            font-size: var(--fs-xxl);
-            font-weight: 900;
-            color: var(--foreground);
-        }   
-        .playlist-owner {
-            font-size: var(--fs-md);
-            color: var(--light-dark);
-        }
-
-        .playlist-length {
-            color: var(--foreground);
-        }
-        .playSpotify {
-            max-width: 300px;
-            margin-top: 30px;
-            text-align: center;
-            text-decoration: none;
-            padding: 10px 30px;
-            outline: none;
-            text-transform: uppercase;
-            color: var(--foreground);
-            background-color: var(--primary);
-            border-radius: 20px;    
-            cursor: pointer;
-            transition: all 0.3s ease-in-out;
-            font-weight: 600;
-            white-space: nowrap;
-            
-            &:hover {
-                background-color: var(--darker-primary);
-            }
-        }
-    }
-}
-
-.playlist-tracks-wrapper {
+.tracks-wrapper {
     margin-top: 40px;
     max-width: 1080px;
     width: 100%;
     overflow: hidden;
-    
-    .playlist-tracks-items {
+  
+    .tracks-items {
         display: grid;
         grid-template-columns: 1fr max-content;
         align-items: center;
-   
         cursor: pointer;
         padding: 10px;
         white-space: nowrap;
@@ -88,7 +27,7 @@
             overflow: hidden;
             text-overflow: ellipsis;
             text-decoration: none;
-
+            
             .track-image {
                 width: 92px;
                 height: 92px;
@@ -103,6 +42,7 @@
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
+                
 
                 .track-title {
                     font-size: var(--fs-lg);
@@ -111,6 +51,7 @@
                     overflow: hidden;
                     text-overflow: ellipsis;
                     font-weight: 600;
+                    transition: all 0.3s ease-in-out;
                 }
 
                 .track-artists {
@@ -120,6 +61,7 @@
                     white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
+                    transition: all 0.3s ease-in-out;
                 }
             }
             
@@ -131,4 +73,29 @@
             padding: 0 20px;
         }
     }
+}
+.seeAll{
+    position: relative;
+    cursor: pointer;
+    display: block;
+    max-width: 400px;
+    width: 100%;
+    bottom: 0;
+    margin: 0 auto;
+    outline: none;
+    border: none;
+    border-radius: 150px;
+    font-size: var(--fs-lg);
+    color: var(--foreground);
+    background-color: var(--background);
+    padding: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+ 
+
+    &:hover {
+        background-color: rgba(255,255,255, 0.1);
+    }
+
 }

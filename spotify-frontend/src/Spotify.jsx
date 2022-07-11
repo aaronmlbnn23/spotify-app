@@ -26,51 +26,6 @@ const LOCALSTORAGE_VALUES = {
   };
 
 /**
- * Checks if the amount of time that has elapsed between the timestamp in localStorage
- * and now is greater than the expiration time of 3600 seconds (1 hour).
- * @returns {boolean} Whether or not the access token in localStorage has expired
- */
- const hasTokenExpired = () => {
-    const { accessToken, timestamp, expireTime } = LOCALSTORAGE_VALUES;
-    if (!accessToken || !timestamp) {
-      return false;
-    }
-    const millisecondsElapsed = Date.now() - Number(timestamp);
-    return (millisecondsElapsed / 1000) > Number(expireTime);
-  };
-
-  /**
- * Use the refresh token in localStorage to hit the /refresh_token endpoint
- * in our Node app, then update values in localStorage with data from response.
- * @returns {void}
- */
-const refreshToken = async () => {
-    try {
-      // Logout if there's no refresh token stored or we've managed to get into a reload infinite loop
-      if (!LOCALSTORAGE_VALUES.refreshToken ||
-        LOCALSTORAGE_VALUES.refreshToken === 'undefined' ||
-        (Date.now() - Number(LOCALSTORAGE_VALUES.timestamp) / 1000) < 1000
-      ) {
-        console.error('No refresh token available');
-        logout();
-      }
-  
-      // Use `/refresh_token` endpoint from our Node app
-      const { data } = await axios.get(`/refresh_token?refresh_token=${LOCALSTORAGE_VALUES.refreshToken}`);
-  
-      // Update localStorage values
-      window.localStorage.setItem(LOCALSTORAGE_KEYS.accessToken, data.access_token);
-      window.localStorage.setItem(LOCALSTORAGE_KEYS.timestamp, Date.now());
-  
-      // Reload the page for localStorage updates to be reflected
-      window.location.reload();
-  
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-/**
  * Handles logic for retrieving the Spotify access token from localStorage
  * or URL query params
  * @returns {string} A Spotify access token
@@ -111,6 +66,51 @@ const refreshToken = async () => {
     return false;
   };
 
+/**
+ * Checks if the amount of time that has elapsed between the timestamp in localStorage
+ * and now is greater than the expiration time of 3600 seconds (1 hour).
+ * @returns {boolean} Whether or not the access token in localStorage has expired
+ */
+ const hasTokenExpired = () => {
+  const { accessToken, timestamp, expireTime } = LOCALSTORAGE_VALUES;
+  if (!accessToken || !timestamp) {
+    return false;
+  }
+  const millisecondsElapsed = Date.now() - Number(timestamp);
+  return (millisecondsElapsed / 1000) > Number(expireTime);
+};
+
+/**
+* Use the refresh token in localStorage to hit the /refresh_token endpoint
+* in our Node app, then update values in localStorage with data from response.
+* @returns {void}
+*/
+const refreshToken = async () => {
+  try {
+    // Logout if there's no refresh token stored or we've managed to get into a reload infinite loop
+    if (!LOCALSTORAGE_VALUES.refreshToken ||
+      LOCALSTORAGE_VALUES.refreshToken === 'undefined' ||
+      (Date.now() - Number(LOCALSTORAGE_VALUES.timestamp) / 1000) < 1000
+    ) {
+      console.error('No refresh token available');
+      logout();
+    }
+
+    // Use `/refresh_token` endpoint from our Node app
+    const { data } = await axios.get(`/refresh_token?refresh_token=${LOCALSTORAGE_VALUES.refreshToken}`);
+
+    // Update localStorage values
+    window.localStorage.setItem(LOCALSTORAGE_KEYS.accessToken, data.access_token);
+    window.localStorage.setItem(LOCALSTORAGE_KEYS.timestamp, Date.now());
+
+    // Reload the page for localStorage updates to be reflected
+    window.location.reload();
+
+  } catch (e) {
+    console.error(e);
+  }
+};
+
 
 
 
@@ -126,3 +126,7 @@ export const fetchSearchResults = (q) => axios.get(`/search?q=${q}&type=track&li
 export const getPlaylists = () => axios.get('/me/playlists')
 export const getRecentlyPlayed = (limit) => axios.get(`/me/player/recently-played${limit ? `?limit=${limit}` : ''}`)
 export const getPlaylist = (id) => axios.get(`/playlists/${id}`)
+export const getTrack = (id) => axios.get(`/tracks/${id}`)
+export const getTopArtists = (limit) => axios.get(`/me/top/artists?time_range=long_term&limit=${limit}`)
+export const getArtist = (id) => axios.get(`/artists/${id}`)
+export const getTopTracks = (limit) => axios.get(`/me/top/tracks?time_range=long_term&limit=${limit}`)

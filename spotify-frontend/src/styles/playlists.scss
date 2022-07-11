@@ -1,9 +1,9 @@
 .playlists-wrapper {
- 
     margin-top: var(--navbar-h);
     transition: all 0.3s ease-in;
     width: 100%;
     overflow: auto;
+    background-color: var(--background);
     
     .page-title {
         color: var(--foreground);
@@ -18,7 +18,7 @@
         transition: all 0.5s ease-in;
         width: 100%;
         
-        
+      
         
         & > *  {
             margin-right: 20px;
@@ -28,10 +28,12 @@
     }
     .playlist-items {
         position: relative;
-        
+        padding: 20px;
+        border-radius: 8px;
 
         .image-wrapper {
             position: relative;
+
             &:hover>.view-wrapper{
                 display: flex;
             }
@@ -40,6 +42,7 @@
                 width: 180px;
                 height: 180px;
                 cursor: pointer;
+                border-radius: 50%;
             }
     
 
@@ -54,11 +57,13 @@
                 z-index: 2;
                 cursor: pointer;
                 background-color: rgb(0, 0, 0, 0.4);
+                border-radius: 50%;
                 display: none;
                 .view-icon {
                     width: 35px;
                     height: 35px;
                     color: rgb(255, 255,255, 0.6);
+                    
                     transition: all 0.2s ease-in;
                     &:hover {
                         color: #ffffff;
@@ -74,6 +79,7 @@
             
 
             .playlist-title {
+                margin-top: 16px;
                 font-size: var(--fs-md);
                 color: var(--foreground);
                 word-wrap: break-word;

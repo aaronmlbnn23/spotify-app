@@ -1,0 +1,70 @@
+.artist-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+
+
+    @media(max-width: 520px) {
+        justify-content: center;
+        text-align: center;
+    }
+    .artist-image {
+        width: 300px;
+        height: 300px;
+        margin-right: 20px;
+    }
+
+    .artist-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        & > * {
+            margin-top: 10px;
+        }
+        .artist-name {
+
+            color: var(--foreground);
+            font-weight: 800;
+            font-size: clamp(24px, 8vw, 40px);
+
+        }
+
+        .artist-genre {
+            color: var(--light-dark);
+            font-size: var(--fs-xl);
+            text-transform: capitalize;
+        }
+        .artist-followers {
+            font-size: var(--fs-xl);
+            color: var(--foreground);
+
+            .number-followers {
+                color: var(--primary);
+                font-weight: 800;
+            }
+        }
+    }
+
+    .view {
+        max-width: 300px;
+        margin-top: 30px;
+        text-align: center;
+        text-decoration: none;
+        padding: 10px 30px;
+        outline: none;
+        text-transform: uppercase;
+        color: var(--foreground);
+        background-color: var(--primary);
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        font-weight: 600;
+        white-space: nowrap;
+        border: none;
+
+
+        &:hover {
+            background-color: var(--darker-primary);
+        }
+    }
+}

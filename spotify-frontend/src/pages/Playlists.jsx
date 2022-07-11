@@ -29,7 +29,7 @@ const Playlists = () => {
     };
     fetchPlaylists();
   }, []);
-  //console.log(testdata);
+  
   return (
     <div className="playlists-wrapper outlet">
       <h2 className="page-title">Playlists</h2>

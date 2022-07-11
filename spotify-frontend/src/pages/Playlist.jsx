@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getPlaylist } from "../Spotify";
 import { catchErrors, formatDuration } from "../utilities";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 const Playlist = () => {
   const [playlist, setPlaylist] = useState();
   const [testdata, setdata] = useState();
@@ -38,7 +38,7 @@ const Playlist = () => {
     catchErrors(fetchPlaylist());
   }, [id]);
   //console.log(testdata);
-  console.log(playlist);
+  console.log(testdata);
   return (
     <div className="outlet">
       {playlist && (
@@ -67,7 +67,7 @@ const Playlist = () => {
         {playlistTracks &&
           playlistTracks.map((track) => (
             <div className="playlist-tracks-items" key={track.id}>
-              <div className="items-wrapper">
+              <Link className="items-wrapper" to={`/track/${track.id}`}>
                 <img
                   className="track-image"
                   src={track.image.url}
@@ -77,7 +77,7 @@ const Playlist = () => {
                   <p className="track-title">{track.title}</p>
                   <p className="track-artists">{track.artists}</p>
                 </div>
-              </div>
+              </Link>
               <p className="track-duration">{track.duration}</p>
             </div>
           ))}
