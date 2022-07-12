@@ -5,13 +5,14 @@ import { catchErrors, formatDuration } from "../utilities";
 import { Link } from 'react-router-dom'
 const RecentPlayed = () => {
   const [recentlyPlayed, setRecentlyPlayed] = useState();
-  const [testdata, settestdata] = useState();
   const [limit, setLimit ] = useState(8)
-  //console.log(recentlyPlayed)
+
+    
+
+
   useEffect(() => {
     const fetchRecent = async () => {
       const res = await getRecentlyPlayed(limit);
-      settestdata(res.data.items);
       setRecentlyPlayed(
         res.data.items.map((data) => {
           const artists = data.track.artists
@@ -37,7 +38,7 @@ const RecentPlayed = () => {
     catchErrors(fetchRecent());
   }, [limit]);
 
- //console.log(testdata);
+
   const seeLess = () => {
     setLimit(8);
   }
@@ -54,7 +55,7 @@ const RecentPlayed = () => {
           {recentlyPlayed &&
             recentlyPlayed.map((track) => (
               <div className="recent-container" key={track.played_at}>
-                <Link className="recent-info" to={`/track/${track.id}`}>
+                <Link className="recent-info" to={`/track/${track.id}/${track.title}`}>
                   <img
                     className="album-image"
                     src={track.albumUrl}

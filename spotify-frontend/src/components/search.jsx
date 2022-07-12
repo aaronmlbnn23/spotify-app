@@ -57,13 +57,13 @@ const search = () => {
         />
         <div className="search-results-wrapper">
           {searchResults && searchResults.map((track) => (
-            <div className="track-wrapper" key={track.uri}>
-              <Link className="tracks"  to={`/track/${track.id}`} onClick={handleClick}>
-                <img className="album-image" src={track.albumUrl} alt="Album" />
+            <div className="s-track-wrapper" key={track.uri}>
+              <Link className="s-tracks"  to={`/track/${track.id}/${track.title}`} onClick={handleClick}>
+                <img className="s-album-image" src={track.albumUrl} alt="Album" />
 
-                <div className="artist-wrapper">
-                  <h3 className="track-title"> {track.title} </h3>
-                  <h5 className="artist-name">{track.artist} &nbsp;</h5>
+                <div className="s-artist-wrapper">
+                  <h3 className="s-track-title"> {track.title} </h3>
+                  <h5 className="s-artist-name">{track.artist} &nbsp;</h5>
                 </div>
               </Link>
             </div>

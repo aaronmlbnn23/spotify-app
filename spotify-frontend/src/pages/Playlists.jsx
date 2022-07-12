@@ -3,14 +3,13 @@ import { getPlaylists } from "../Spotify";
 import { catchErrors } from "../utilities";
 import { BsEyeFill } from "react-icons/bs";
 import { Link } from 'react-router-dom'
+import Loader from '../components/Loader'
 
 const Playlists = () => {
   const [playLists, setPlayLists] = useState();
-  const [testdata, settestdata] = useState();
   useEffect(() => {
     const fetchPlaylists = async () => {
       const res = await getPlaylists();
-      settestdata(res.data);
       setPlayLists(
         res.data.items.map((data) => {
           const images = data.images.reduce((medium, image) => {
@@ -34,8 +33,8 @@ const Playlists = () => {
     <div className="playlists-wrapper outlet">
       <h2 className="page-title">Playlists</h2>
       <div className="playlist-wrapper">
-        {playLists &&
-          playLists.map((playlist) => (
+        {playLists ?
+          (playLists.map((playlist) => (
             <div className="playlist-items" key={playlist.uri}>
               <div className="image-wrapper">
               <img
@@ -54,7 +53,7 @@ const Playlists = () => {
               </div>
              
             </div>
-          ))}
+          ))) : <Loader/>}
       </div>
     </div>
   );

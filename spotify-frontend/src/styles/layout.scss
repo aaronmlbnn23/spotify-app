@@ -62,14 +62,16 @@ aside.collapse~main {
 }
 
 .outlet{
+    position: relative;
     padding: 20px;
     width: 100%;
+    min-height: 100vh;
     background-color: var(--dark);
     padding-right: var(--recent-w);
     height: 100%;
     margin-top: var(--navbar-h);
     background-color: var(--background);
-    overflow-x: hidden;
+    overflow: hidden;
     transition: all 0.3s ease-in;
     @media (max-width: 850px) {
         padding-right: 20px;

@@ -4,7 +4,6 @@ import { catchErrors, formatDuration } from "../utilities";
 import { useParams, Link } from "react-router-dom";
 const Playlist = () => {
   const [playlist, setPlaylist] = useState();
-  const [testdata, setdata] = useState();
   const { id } = useParams();
   const [playlistTracks, setPlaylistTracks] = useState();
 
@@ -12,7 +11,6 @@ const Playlist = () => {
     if (!id) return;
     const fetchPlaylist = async () => {
       const { data } = await getPlaylist(id);
-      setdata(data);
       setPlaylist(data);
       setPlaylistTracks(
         data.tracks.items.map((track) => {
@@ -38,7 +36,7 @@ const Playlist = () => {
     catchErrors(fetchPlaylist());
   }, [id]);
   //console.log(testdata);
-  console.log(testdata);
+  //console.log(testdata);
   return (
     <div className="outlet">
       {playlist && (
@@ -67,7 +65,7 @@ const Playlist = () => {
         {playlistTracks &&
           playlistTracks.map((track) => (
             <div className="playlist-tracks-items" key={track.id}>
-              <Link className="items-wrapper" to={`/track/${track.id}`}>
+              <Link className="items-wrapper" to={`/track/${track.id}/${track.title}`}>
                 <img
                   className="track-image"
                   src={track.image.url}

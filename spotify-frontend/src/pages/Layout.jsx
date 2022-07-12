@@ -3,6 +3,7 @@ import Sidebar from "../components/sidebar";
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import RecentPlayed from "./RecentPlayed";
+
 const Layout = () => {
   return (
     <div>
@@ -10,9 +11,9 @@ const Layout = () => {
         <Sidebar />
       </aside>
       <main>
-        <Navbar/>
+        <Navbar />
         <Outlet className="outlet" />
-        <RecentPlayed />
+        <RecentPlayed />  
       </main>
     </div>
   );

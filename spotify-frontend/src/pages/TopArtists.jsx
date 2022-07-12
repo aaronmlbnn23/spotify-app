@@ -3,6 +3,7 @@ import { getTopArtists } from "../Spotify";
 import { catchErrors } from "../utilities";
 import { Link } from "react-router-dom";
 import { BsEyeFill } from "react-icons/bs";
+import Loader from "../components/Loader";
 
 const TopArtists = () => {
   const [topArtists, setTopArtists] = useState();
@@ -12,7 +13,6 @@ const TopArtists = () => {
   useEffect(() => {
     const fetchTopArtists = async () => {
       const { data } = await getTopArtists(limit);
-      settestdata(data);
       setTopArtists(
         data.items.map((artist) => {
           const images = artist.images.reduce((largest, image) => {
@@ -29,13 +29,13 @@ const TopArtists = () => {
     };
     catchErrors(fetchTopArtists());
   }, [limit]);
-
+  
   return (
     <div className="top-wrapper outlet">
       <h2 className="page-title">Top {limit} Artists of All Time</h2>
       <div className="top-artists-wrapper">
-        {topArtists &&
-          topArtists.map((artist) => (
+        {topArtists ?
+          (topArtists.map((artist) => (
             <div className="top-artist-items" key={artist.id}>
               <div className="image-wrapper">
                 <img
@@ -51,17 +51,18 @@ const TopArtists = () => {
               </div>
               <p className="top-artist-name">{artist.name}</p>
             </div>
-          ))}
-      </div>{" "}
+          ))) : <Loader/>}
+      </div>
 
-      {limit == 10 ? <button onClick={() => setLimit(50)} className="seeAll">
-        See Top 50
-      </button> : <button onClick={() => setLimit(10)} className="seeAll">
-        See Less
-      </button>
-      
-    }
-      
+      {limit == 10 ? (
+        <button onClick={() => setLimit(50)} className="seeAll">
+          See Top 50
+        </button>
+      ) : (
+        <button onClick={() => setLimit(10)} className="seeAll">
+          See Less
+        </button>
+      )}
     </div>
   );
 };

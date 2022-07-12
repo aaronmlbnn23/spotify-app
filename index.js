@@ -2,12 +2,26 @@ require('dotenv').config()
 const express = require('express');
 const app = express()
 const axios = require('axios')
-const port = 8888;
+const path = require('path')
 const querystring = require('querystring')
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const REDIRECT_URI = process.env.REDIRECT_URI;
+const FRONTEND_URI = process.env.FRONTEND_URI;
+const PORT = process.env.PORT || 8888;
 
+const lyricsFinder = require('lyrics-finder');
+const cors=require("cors");
+const corsOptions ={
+   origin:'*', 
+   credentials:true,            //access-control-allow-credentials:true
+   optionSuccessStatus:200,
+}
+
+app.use(express.static(path.resolve(__dirname, '/spotify-frontend/dist')))
+
+
+app.use(cors(corsOptions))
 app.get('/', (req, res) => {
     res.send('hello word')
 })
@@ -61,7 +75,7 @@ app.get('/callback', (req, res) => {
                     refresh_token,
                     expires_in
                 })
-                res.redirect(`http://localhost:3000/?${queryParams}`)
+                res.redirect(`${FRONTEND_URI}?${queryParams}`)
 
             } else {
                 res.redirect(`/?${querystring.stringify({error: 'invalid token'})}`)
@@ -94,6 +108,20 @@ app.get('/refresh_token', (req, res) => {
         res.send(error)
     })
 })
-app.listen(port, () => {
-    console.log(`Express app is listening to http://localhost:${port}`)
+
+app.get('/lyrics', async (req, res)  => {
+    const lyrics = await lyricsFinder(req.query.artist, req.query.track) || 'No Lyrics Found.'
+    res.json({lyrics})
+});
+
+app.get('/lyrics', async (req, res)  => {
+    const lyrics = await lyricsFinder(req.query.artist, req.query.track) || 'No Lyrics Found.'
+    res.json({lyrics})
+});
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '/spotify-frontend/dist', 'index.html'));
+})
+app.listen(PORT, () => {
+    console.log(`Express app is listening to http://localhost:${PORT}`)
 })

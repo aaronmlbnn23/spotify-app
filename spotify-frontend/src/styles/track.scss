@@ -1,27 +1,32 @@
 .track-header {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: no-wrap;
     align-items: center;
-
-    @media(max-width: 520px) {
+    gap: 20px;
+    
+    @media(max-width: 768px) {
         justify-content: center;
         text-align: center;
-        
+        flex-wrap: wrap;
+
     }
     .track-image {
         width: 300px;
         height: 300px;
-
+        
+        @media(max-width: 768px) {
+            width: 200px;
+            height: 200px;
+            
+        }
     }
 
     .track-info {
-        margin-left: 20px;
+        
         display: flex;
         flex-direction: column;
 
-        @media(max-width: 520px) {
-            margin-left: 0;
-        }
+       
         & > * {
             margin-top: 6px;
         }
@@ -35,10 +40,11 @@
 
         .track-artist {
             color: var(--light-dark);
-            font-size: var(--fs-xl);
+            font-size: var(--fs-lg);
             font-weight: 600;
         }
         .track-album {
+            font-size: var(--fs-md);
             color: var(--light-dark);
             font-weight: 500;
         }
@@ -72,4 +78,23 @@
 
     }
     
+}
+
+.lyrics {
+    margin-top: 20px;
+    padding: 50px;
+    text-align: center;
+    color: var(--light);
+}
+
+@media(max-width: 768px) {
+    .lyrics {
+        padding-top: 50px;
+        margin-bottom: 100px;
+        padding: 0;
+       font-size: var(--fs-xs);
+    }
+    .track-outlet {
+        overflow-x: auto;
+    }
 }

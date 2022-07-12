@@ -1,0 +1,44 @@
+.loader {
+    display: flex;
+    align-items: center;
+    
+    
+}
+
+.bar {
+    display: inline-block;
+    width: 5px;
+    height: 20px;
+    background-color: var(--light-dark);
+    border-radius: 12px;
+    animation: scale-up 1s linear infinite;
+}
+.bar:nth-child(2) {
+    height: 35px;
+    margin: 0 12px;
+    animation-delay: .25s;
+}
+.bar:nth-child(3) {
+    animation-delay: .5s;
+}
+
+
+@keyframes scale-up {
+    20% {
+        background-color: #fff;
+        transform: scaleY(1.5);
+    }
+    40%{
+        transform: scaleY(1);
+    }
+}
+
+.loader-wrapper {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}

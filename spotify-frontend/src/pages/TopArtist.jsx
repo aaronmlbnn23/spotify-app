@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { getArtist } from '../Spotify'
 import { useParams } from 'react-router-dom'
 import { catchErrors, separateComma } from '../utilities'
+import Loader from '../components/Loader'
 const TopArtist = () => {
   const [artist, setArtist ] = useState()
   const [testdata, settestdata] = useState()
@@ -14,12 +15,12 @@ const TopArtist = () => {
     }
     catchErrors(fetArtist())
   }, [])
- // console.log(artist)
+  console.log(testdata)
   return (
     <div className='outlet'>
 
       <div className='artist-wrapper '>
-        {artist && <>
+        {artist ? (<>
         <div className='artist-image-wrapper'> 
             <img className='artist-image' src={artist.images[0].url} alt='artist-image' />
           </div>
@@ -29,7 +30,7 @@ const TopArtist = () => {
             <p className='artist-genre'>Genres: {artist.genres.map((genre) => genre).join(', ')}</p>
             <a href={artist.external_urls.spotify} target='_blank' className='view'>View on Spotify</a>
           </div>
-          </>
+          </>) : <Loader/>
         }
       </div>
     </div>

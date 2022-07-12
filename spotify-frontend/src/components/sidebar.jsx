@@ -2,17 +2,19 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import { logout, getCurrentUserProfile, getFollowedArtists, accessToken, getPlaylists } from '../Spotify'
 import { catchErrors } from '../utilities'
-import { Link } from 'react-router-dom' 
+import { Link, useLocation } from 'react-router-dom' 
 import { TbPlaylist, TbHome2, TbMicrophone2} from 'react-icons/tb'
 import { BsFillPlayFill} from 'react-icons/bs'
 import {IoMusicalNotesOutline} from 'react-icons/io5'
+import  IntoneLogo  from '../images/intone-logo.png'
 
 const Sidebar = () => {
   const [profile, setProfile] = useState();
   const [followedArtists, setFollowedArtists] = useState()
   const [followers, setFollowers] = useState(0);
   const [playlists, setPlaylists] = useState();
-  
+  const location = useLocation()
+  const splitLocation = location.pathname.split('/')
   useEffect(() => {
     
     const fetchProfileData = async () => {
@@ -42,6 +44,9 @@ const Sidebar = () => {
   return (
     
       <div className='sidebar-wrapper'>
+        <div className='logo-wrapper '>
+            <img className='intone-logo' src={IntoneLogo} alt='logo'/>
+        </div>
           <div className='user-wrapper'>
           {profile &&
 
@@ -74,25 +79,21 @@ const Sidebar = () => {
 
           <div className='menu-wrapper'>
             <Link to='/home' className='menu-item'>
-            <TbHome2/>
+            <TbHome2 className={splitLocation[1] === 'home'? 'active': ''} />
               Home
             </Link>
             <Link to='/top-tracks' className='menu-item'>
-              <IoMusicalNotesOutline/>
+              <IoMusicalNotesOutline className={splitLocation[1] === 'top-tracks'? 'active': ''}/>
               Top Tracks
             </Link>
             <Link to='/top-artists' className='menu-item'>
-              <TbMicrophone2/>
+              <TbMicrophone2 className={splitLocation[1] === 'top-artists'? 'active': ''}/>
               Top Artists
             </Link>
             <Link to='/playlists' className='menu-item'>
-              < TbPlaylist/>
+              < TbPlaylist className={splitLocation[1] === 'playlists'? 'active': ''}/>
               Playlists
             </Link>
-            {profile && profile.product == 'premium' ? <Link to='/playlists' className='menu-item'>
-              < BsFillPlayFill/>
-              Sing
-            </Link> : ''}
           </div>
           <button className='logoutButton' onClick={() => logout()}>LOGOUT</button>
       </div>

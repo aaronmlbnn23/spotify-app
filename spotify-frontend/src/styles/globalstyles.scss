@@ -11,7 +11,7 @@
 
     --foreground: var(--light);
     --background: var(--gray);
-
+ 
     --fs-xxs: 12px;
     --fs-xs: 14px;
     --fs-sm: 16px;
@@ -19,14 +19,14 @@
     --fs-lg: 20px;
     --fs-xl: 22px;
     --fs-xxl: 24px;
-
-    --sidebar-w: 320px;
+    --button-padding: 10
+    --sidebar: 320px;
     --navbar-h: 80px;
     --recent-w: 380px;
+    --sidebar-w: 320px
 
-
-   
 }
+
 @media (max-width: 768px) {
     :root {
         --fs-xxs: 8px;
@@ -35,7 +35,9 @@
         --fs-md: 14px;
         --fs-lg: 16px;
         --fs-xl: 18px;
-        --fs-xxl: 20px;
+        --fs-xxl: 20px; 
+
+        --sidebar-w: 250px;
     }
 }
 *,
@@ -85,3 +87,5 @@ body {
 @import './top-tracks.scss';
 @import './top-artists.scss';
 @import './artist.scss';
+@import './player.scss';
+@import './loader.scss'

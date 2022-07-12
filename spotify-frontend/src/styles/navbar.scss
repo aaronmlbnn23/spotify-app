@@ -30,7 +30,12 @@ aside.collapse~main>.toolbar-wrapper {
 @media (max-width: 768px) {
     .toolbar-wrapper {
         display: flex;
-        justify-content: flex-start;
         width: 100%;
+
+        .toggle-icon {
+            width: 24px;
+            height: 24px;
+        }
     }
+    
 }

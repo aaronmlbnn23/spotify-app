@@ -1,6 +1,5 @@
 .search-wrapper {
     padding: 20px;
-    
     width: 100%;
     height: var(--navbar-h);
     max-width: 350px;
@@ -26,7 +25,7 @@
         z-index: 10;
     }
 
-    .track-wrapper {
+    .s-track-wrapper {
         background-color: black;
        
         z-index: 10;
@@ -35,12 +34,12 @@
         display: block;
 
 
-        .tracks {
+        .s-tracks {
             display: flex;
             align-items: center;
             max-width: 400px;
             text-decoration: none;
-            .album-image {
+            .s-album-image {
                 max-width: 50px;
                 width: 100%;
                 height: auto;
@@ -48,16 +47,16 @@
             }
 
 
-            .artist-wrapper {
+            .s-artist-wrapper {
                 display: inline-block;
 
-                .artist-name{
+                .s-artist-name{
                     color: var(--light-dark);
                     font-size: var(--fs-xs);
                     font-weight: 400;
                 }
 
-                .track-title {
+                .s-track-title {
                     font-weight: 500;
                     font-size: var(--fs-sm);
                     color: var(--foreground);

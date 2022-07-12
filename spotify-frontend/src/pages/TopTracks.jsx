@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { getTopTracks } from "../Spotify";
 import { catchErrors, formatDuration } from "../utilities";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
+import Loader from "../components/Loader";
 const TopTracks = () => {
   const [topTracks, setTopTracks] = useState();
   const [testdata, settestdata] = useState();
@@ -26,7 +27,7 @@ const TopTracks = () => {
             artists: artists,
             duration: duration,
             release_date: release_date,
-            uri: track.uri
+            uri: track.uri,
           };
         })
       );
@@ -34,14 +35,18 @@ const TopTracks = () => {
     fetchTopTracks();
   }, [limit]);
   //console.log(topTracks);
-  console.log(testdata)
-  return <div className="outlet">
+  console.log(testdata);
+  return (
+    <div className="outlet">
       <h2 className="page-title">Top {limit} Tracks of All Time</h2>
       <div className="tracks-wrapper">
-      {topTracks &&
+        {topTracks ? (
           topTracks.map((track) => (
             <div className="tracks-items" key={track.id}>
-              <Link className="items-wrapper" to={`/track/${track.id}`}>
+              <Link
+                className="items-wrapper"
+                to={`/track/${track.id}/${track.name}`}
+              >
                 <img
                   className="track-image"
                   src={track.image.url}
@@ -49,18 +54,29 @@ const TopTracks = () => {
                 />
                 <div className="tracks-info">
                   <p className="track-title">{track.name}</p>
-                  <p className="track-artists">{track.artists} &bull; {track.release_date}</p>
+                  <p className="track-artists">
+                    {track.artists} &bull; {track.release_date}
+                  </p>
                 </div>
               </Link>
               <p className="track-duration">{track.duration}</p>
             </div>
-          ))}
-          </div>
-          {limit == 20 ? <button className='seeButton' onClick={() => setLimit(50)}>See Top 50</button> :
-          <button className='seeButton' onClick={()=> setLimit(20)}>See Less</button>
-          }
-          
-  </div>;
+          ))
+        ) : (
+          <Loader />
+        )}
+      </div>
+      {limit == 20 ? (
+        <button className="seeButton" onClick={() => setLimit(50)}>
+          See Top 50
+        </button>
+      ) : (
+        <button className="seeButton" onClick={() => setLimit(20)}>
+          See Less
+        </button>
+      )}
+    </div>
+  );
 };
 
 export default TopTracks;

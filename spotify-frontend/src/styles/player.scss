@@ -1,0 +1,22 @@
+.player-wrapper {
+    position: fixed;
+    bottom: 0;
+    padding: 0;
+    left: 0;
+   width: calc(100% - (var(--sidebar-w) + var(--recent-w)));
+   margin-left: var(--sidebar-w);
+   transition: all 0.3s ease-in-out
+}
+
+
+aside.collapse~main>.outlet>.player-wrapper{
+    margin-left: 0;
+    width: calc(100% - var(--recent-w));
+}
+
+@media(max-width: 768px) {
+    .player-wrapper{
+       width: 100% !important ;
+       margin-left: 0;
+    }
+}

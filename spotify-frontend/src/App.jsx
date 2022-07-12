@@ -35,14 +35,13 @@ console.log(accessToken)
             <Route path='/top-artists' element={<TopArtists />} />
             <Route path='/playlist/:id' element={<Playlist />} />
             <Route path='/playlists' element={<Playlists />} />
-            <Route path='/track/:id' element={<Track />} />
+            <Route path='/track/:id/:title' element={<Track />} />
             <Route path='/tracks' element={<Track />} />
             <Route path='/home' element={<Home />} />
             <Route path='/search' element={<Search />} />
             <Route path='/' element={<Home />} />
-            <Route path='/*' element={<Home/>}></Route>
+            <Route path='/*' element={<Home/>}/>
             </Route>
-           
           </Routes>
         </BrowserRouter>
 
