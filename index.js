@@ -18,7 +18,7 @@ const corsOptions ={
    optionSuccessStatus:200,
 }
 
-app.use(express.static(path.resolve(__dirname, '/spotify-frontend/dist')))
+app.use(express.static(path.resolve(__dirname, './spotify-frontend/dist')))
 
 
 app.use(cors(corsOptions))
@@ -114,7 +114,7 @@ app.get('/lyrics', async (req, res)  => {
 
 
 app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '/spotify-frontend/dist', 'index.html'));
+    res.sendFile(path.resolve(__dirname, './spotify-frontend/dist', 'index.html'));
 })
 app.listen(PORT, () => {
     console.log(`Express app is listening to http://localhost:${PORT}`)
