@@ -26,7 +26,7 @@ const Playlists = () => {
         })
       );
     };
-    fetchPlaylists();
+    catchError(fetchPlaylists());
   }, []);
   
   return (

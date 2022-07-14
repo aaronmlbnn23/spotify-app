@@ -114,10 +114,6 @@ app.get('/lyrics', async (req, res)  => {
     res.json({lyrics})
 });
 
-app.get('/lyrics', async (req, res)  => {
-    const lyrics = await lyricsFinder(req.query.artist, req.query.track) || 'No Lyrics Found.'
-    res.json({lyrics})
-});
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '/spotify-frontend/dist', 'index.html'));

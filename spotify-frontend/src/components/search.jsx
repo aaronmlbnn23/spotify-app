@@ -6,7 +6,6 @@ import Player from "./player";
 const search = () => {
   const [search, setSearch] = useState();
   const [searchResults, setSearchResults] = useState([]);
-  const [playTrack, setPlayTrack] = useState();
  // const chooseTrack = (track) => {
    // setPlayTrack(track);
     //setSearch("");

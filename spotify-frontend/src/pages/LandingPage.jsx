@@ -1,4 +1,3 @@
-import React from 'react'
 
 const LandingPage = () => {
   const LOGIN_URI = process.env.NODE_ENV !== 'production' ? 'http://localhost:8888/login' :

@@ -7,7 +7,6 @@ import Loader from "../components/Loader";
 
 const TopArtists = () => {
   const [topArtists, setTopArtists] = useState();
-  const [testdata, settestdata] = useState();
   const [limit, setLimit] = useState(10);
   //console.log(topArtists);
   useEffect(() => {

@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react'
-import { accessToken, logout, getCurrentUserProfile,  } from './Spotify'
-import { catchErrors } from './utilities'
-import { BrowserRouter, Routes, Route, Link, NavLink, useLocation } from 'react-router-dom'
-import { Profile, TopArtists, TopTracks, LandingPage, Playlists, SpecificPlaylist, Search, Layout, Home, Track, Playlist, TopArtist} from './pages'
+import { accessToken  } from './Spotify'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import {TopArtists, TopTracks, LandingPage, Playlists, Search, Layout, Home, Track, Playlist, TopArtist} from './pages'
 
 function App() {
   const [token, setToken] = useState(null)
@@ -12,7 +11,7 @@ function App() {
     setToken(accessToken)
    
   }, [])
-console.log(accessToken)
+//console.log(accessToken)
   function ScrollToTop() {
     const { pathname } = useLocation();
     useEffect(() => {

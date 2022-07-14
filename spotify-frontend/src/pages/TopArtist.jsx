@@ -5,17 +5,14 @@ import { catchErrors, separateComma } from '../utilities'
 import Loader from '../components/Loader'
 const TopArtist = () => {
   const [artist, setArtist ] = useState()
-  const [testdata, settestdata] = useState()
   const {id } = useParams();
   useEffect(() => {
     const fetArtist = async () => {
       const {data} = await getArtist(id)
-      settestdata(data)
       setArtist(data)
     }
     catchErrors(fetArtist())
   }, [])
-  console.log(testdata)
   return (
     <div className='outlet'>
 

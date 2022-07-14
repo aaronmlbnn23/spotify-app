@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getTrack } from "../Spotify";
-import { Link } from "react-router-dom";
 import Player from "../components/player";
 import { getCurrentUserProfile } from "../Spotify";
 import { catchErrors } from "../utilities";
@@ -16,7 +15,7 @@ const Track = () => {
   const [lyrics, setLyrics] = useState();
   const [currentTrackArtist, setCurrentTrackArtist] = useState();
   const { title } = useParams();
- // console.log(track)
+
   useEffect(() => {
     if(!title) return;
     axios

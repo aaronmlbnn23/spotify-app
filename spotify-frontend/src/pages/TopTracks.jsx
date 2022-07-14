@@ -32,7 +32,7 @@ const TopTracks = () => {
         })
       );
     };
-    fetchTopTracks();
+    catchErrors(fetchTopTracks());
   }, [limit]);
   //console.log(topTracks);
   console.log(testdata);

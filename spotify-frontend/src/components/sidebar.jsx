@@ -4,14 +4,12 @@ import { logout, getCurrentUserProfile, getFollowedArtists, accessToken, getPlay
 import { catchErrors } from '../utilities'
 import { Link, useLocation } from 'react-router-dom' 
 import { TbPlaylist, TbHome2, TbMicrophone2} from 'react-icons/tb'
-import { BsFillPlayFill} from 'react-icons/bs'
 import {IoMusicalNotesOutline} from 'react-icons/io5'
 import  IntoneLogo  from '../images/intone-logo.png'
 
 const Sidebar = () => {
   const [profile, setProfile] = useState();
   const [followedArtists, setFollowedArtists] = useState()
-  const [followers, setFollowers] = useState(0);
   const [playlists, setPlaylists] = useState();
   const location = useLocation()
   const splitLocation = location.pathname.split('/')
@@ -21,7 +19,7 @@ const Sidebar = () => {
       const { data } = await getCurrentUserProfile();
       setProfile(data)
     }
-    fetchProfileData();
+    catchErrors(fetchProfileData());
   }, [])
 
   useEffect(() => {
@@ -29,7 +27,7 @@ const Sidebar = () => {
       const { data } = await getPlaylists();
       setPlaylists(data)
     }
-    fetchPlaylist()
+    catchErrors(fetchPlaylist())
   }, [])
 
   useEffect(()=> {
@@ -37,7 +35,7 @@ const Sidebar = () => {
         const {data } = await getFollowedArtists();
         setFollowedArtists(data.artists)
       }
-      fetchFollowedArtists();
+      catchErrors(fetchFollowedArtists());
   }, [])
  // console.log(profile)
  
