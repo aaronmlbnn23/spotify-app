@@ -57,18 +57,18 @@ const Sidebar = () => {
                 <div className='stats-wrapper'>
                     <div className='followers'>
                         <b className='stats-number'>{profile.followers.total}</b>
-                        <p className='stats-label'>FOLLOWERS</p>
+                        <p className='stats-label'>Followers</p>
                     </div>
                     <div className='following'>
                       {followedArtists && <b className='stats-number'>{followedArtists.items.length }</b>}
                     
                         
-                        <p className='stats-label'>FOLLOWING</p>
+                        <p className='stats-label'>Following</p>
                     </div>
                     <div className='playlists'>
                       {playlists &&  <b className='stats-number'>{playlists.total}</b>}
                        
-                        <p className='stats-label'>PLAYLISTS</p>
+                        <p className='stats-label'>Playlists</p>
                     </div>
                 </div>
             </>

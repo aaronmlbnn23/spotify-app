@@ -36,7 +36,6 @@
 
         .stats-wrapper {
             cursor: default;
-            margin-top: 20px;
             display: flex;
             align-items: center;
             justify-content: space-evenly;
@@ -64,8 +63,7 @@
         display: flex;
         align-items: center;
         flex-direction: column;
-        margin-top: 50px;
-        padding: 20px;
+        margin-top: 20px;
 
         & > * {
             display: flex;
