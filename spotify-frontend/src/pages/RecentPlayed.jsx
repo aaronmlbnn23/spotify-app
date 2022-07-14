@@ -46,6 +46,7 @@ const RecentPlayed = () => {
   const seeAll = () => {
     setLimit(0);
   }
+  
   return (
     <div className="recentplayed-wrapper">
       

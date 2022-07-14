@@ -15,11 +15,13 @@ const Track = () => {
   const [lyrics, setLyrics] = useState();
   const [currentTrackArtist, setCurrentTrackArtist] = useState();
   const { title } = useParams();
+  const LYRICS_URI = process.env.NODE_ENV !== 'production' ? 'http://localhost:8888/lyrics' :
+  'https://intone-spotify.herokuapp.com/lyrics';
 
   useEffect(() => {
     if(!title) return;
     axios
-      .get("http://localhost:8888/lyrics", {
+      .get(LYRICS_URI, {
         params: {
           track: title,
           artitst: currentTrackArtist,
@@ -57,8 +59,9 @@ const Track = () => {
   //console.log(track);
   return (
     <div className="track-outlet outlet">
+      {track && lyrics ? (
       <div className="track-wrapper">
-        {track && lyrics ? (
+        
           <div className="track-header">
             <img
               src={track.album.images[0].url}
@@ -93,9 +96,9 @@ const Track = () => {
               )}
             </div>
           </div>
-        ) : <Loader/>}
+      
       </div>
-
+  ) : <Loader/>}
       <div className="lyrics">
         {lyrics && (<pre>{lyrics}</pre>) }
       </div>
