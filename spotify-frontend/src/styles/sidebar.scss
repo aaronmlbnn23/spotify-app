@@ -1,14 +1,12 @@
 .sidebar-wrapper {  
     .logo-wrapper {
-        
-        width: 100%;
         display: flex;
         justify-content: center;
     
         .intone-logo {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
+            max-width: 150px;
+            width: 100%;
+            height: auto;
         }
 
     }
