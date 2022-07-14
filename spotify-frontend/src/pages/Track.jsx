@@ -15,6 +15,8 @@ const Track = () => {
   const [lyrics, setLyrics] = useState();
   const [currentTrackArtist, setCurrentTrackArtist] = useState();
   const { title } = useParams();
+
+  
   const LYRICS_URI = process.env.NODE_ENV !== 'production' ? 'http://localhost:8888/lyrics' :
   'https://intone-spotify.herokuapp.com/lyrics';
 
@@ -38,6 +40,7 @@ const Track = () => {
   const playTrack = (track) => {
     setTrackUri(track.uri);
     setCurrentTrackArtist(track.artists[0].name);
+
   };
 
   useEffect(() => {
