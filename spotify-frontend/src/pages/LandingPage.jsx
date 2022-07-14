@@ -1,7 +1,7 @@
 
 const LandingPage = () => {
   const LOGIN_URI = process.env.NODE_ENV !== 'production' ? 'http://localhost:8888/login' :
-  'http://intone-spotify.herokuapp.com/home';
+  'http://intone-spotify.herokuapp.com/login';
   return (
     <div className='landing-page-wrapper'>
         <a
