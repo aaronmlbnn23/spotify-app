@@ -22,9 +22,7 @@ app.use(express.static(path.resolve(__dirname, '/spotify-frontend/dist')))
 
 
 app.use(cors(corsOptions))
-app.get('/', (req, res) => {
-    res.send('hello word')
-})
+
 
 const generateRandomString = length => {
     let text = '';
