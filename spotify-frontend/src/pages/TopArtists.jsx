@@ -28,33 +28,43 @@ const TopArtists = () => {
     };
     catchErrors(fetchTopArtists());
   }, [limit]);
-  
+
   return (
     <div className="top-wrapper outlet">
       <h2 className="page-title">Top {limit} Artists of All Time</h2>
       <div className="top-artists-wrapper">
-        {topArtists ?
-          (topArtists.map((artist) => (
-            <div className="top-artist-items" key={artist.id}>
-              <div className="image-wrapper">
-                <img
-                  className="top-artist-image"
-                  src={artist.image.url}
-                  alt="artist avatar"
-                />
-                <div className="view-wrapper">
-                  <Link to={`/top-artist/${artist.id}`}>
-                    <BsEyeFill className="view-icon" />
-                  </Link>
+
+        {(function () {
+          switch (topArtists && topArtists.length) {
+            case 0:
+              return (<div className="nothing-wrapper">
+                <h1 className="nosave">No top artist.</h1>
+              </div>)
+            default:
+              return (topArtists ? (topArtists.map((artist) => (
+                <div className="top-artist-items" key={artist.id}>
+                  <div className="image-wrapper">
+                    <img
+                      className="top-artist-image"
+                      src={artist.image.url}
+                      alt="artist avatar"
+                    />
+                    <div className="view-wrapper">
+                      <Link to={`/top-artist/${artist.id}`}>
+                        <BsEyeFill className="view-icon" />
+                      </Link>
+                    </div>
+                  </div>
+                  <p className="top-artist-name">{artist.name}</p>
                 </div>
-              </div>
-              <p className="top-artist-name">{artist.name}</p>
-            </div>
-          ))) : <Loader/>}
+              ))) : <Loader />)
+          }
+
+        })()}
       </div>
 
       {limit == 10 ? (
-        <button onClick={() => setLimit(50)} className="seeAll">
+        <button onClick={() => setLimit(50)} disabled={topArtists && topArtists.length <= 10} className="seeAll">
           See Top 50
         </button>
       ) : (

@@ -5,12 +5,10 @@ import { Link } from "react-router-dom";
 import Loader from "../components/Loader";
 const TopTracks = () => {
   const [topTracks, setTopTracks] = useState();
-  const [testdata, settestdata] = useState();
   const [limit, setLimit] = useState(20);
   useEffect(() => {
     const fetchTopTracks = async () => {
       const { data } = await getTopTracks(limit);
-      settestdata(data);
       setTopTracks(
         data.items.map((track) => {
           const images = track.album.images.reduce((medium, image) => {
@@ -35,39 +33,48 @@ const TopTracks = () => {
     catchErrors(fetchTopTracks());
   }, [limit]);
   //console.log(topTracks);
-  console.log(testdata);
+
   return (
     <div className="outlet">
       <h2 className="page-title">Top {limit} Tracks of All Time</h2>
       <div className="tracks-wrapper">
-        {topTracks ? (
-          topTracks.map((track) => (
-            <div className="tracks-items" key={track.id}>
-              <Link
-                className="items-wrapper"
-                to={`/track/${track.id}/${track.name}`}
-              >
-                <img
-                  className="track-image"
-                  src={track.image.url}
-                  alt="track-image"
-                />
-                <div className="tracks-info">
-                  <p className="track-title">{track.name}</p>
-                  <p className="track-artists">
-                    {track.artists} &bull; {track.release_date}
-                  </p>
-                </div>
-              </Link>
-              <p className="track-duration">{track.duration}</p>
-            </div>
-          ))
-        ) : (
-          <Loader />
-        )}
+        {(function () {
+          switch (topTracks && topTracks.length) {
+            case 0:
+              return (<div className="nothing-wrapper">
+                <h1 className="nosave">No top track.</h1>
+              </div>)
+
+            default:
+              return (topTracks ?
+                (topTracks.map((track) => (
+                  <div className="tracks-items" key={track.id}>
+                    <Link
+                      className="items-wrapper"
+                      to={`/track/${track.id}/${track.name}`}
+                    >
+                      <img
+                        className="track-image"
+                        src={track.image.url}
+                        alt="track-image"
+                      />
+                      <div className="tracks-info">
+                        <p className="track-title">{track.name}</p>
+                        <p className="track-artists">
+                          {track.artists} &bull; {track.release_date}
+                        </p>
+                      </div>
+                    </Link>
+                    <p className="track-duration">{track.duration}</p>
+                  </div>
+                ))
+                ) : <Loader />)
+          }
+        })()}
+
       </div>
       {limit == 20 ? (
-        <button className="seeButton" onClick={() => setLimit(50)}>
+        <button className="seeButton" disabled={topTracks && topTracks.length <= 20} onClick={() => setLimit(50)}>
           See Top 50
         </button>
       ) : (

@@ -3,11 +3,11 @@ import { getRecentlyPlayed } from "../Spotify";
 import { useState, useEffect } from "react";
 import { catchErrors, formatDuration } from "../utilities";
 import { Link } from 'react-router-dom'
+
 const RecentPlayed = () => {
   const [recentlyPlayed, setRecentlyPlayed] = useState();
   const [limit, setLimit ] = useState(8)
 
-    
 
 
   useEffect(() => {
@@ -55,7 +55,7 @@ const RecentPlayed = () => {
           {recentlyPlayed &&
             recentlyPlayed.map((track) => (
               <div className="recent-container" key={track.played_at}>
-                <Link className="recent-info" to={`/track/${track.id}/${track.title}`}>
+                <Link className="recent-info" to={`/track/${track.id}/${track.title}`} >
                   <img
                     className="album-image"
                     src={track.albumUrl}

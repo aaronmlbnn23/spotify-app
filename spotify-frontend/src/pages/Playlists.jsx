@@ -26,34 +26,44 @@ const Playlists = () => {
         })
       );
     };
-    catchError(fetchPlaylists());
+    catchErrors(fetchPlaylists());
   }, []);
   
   return (
     <div className="playlists-wrapper outlet">
       <h2 className="page-title">Playlists</h2>
       <div className="playlist-wrapper">
-        {playLists ?
-          (playLists.map((playlist) => (
-            <div className="playlist-items" key={playlist.uri}>
-              <div className="image-wrapper">
-              <img
-                className="playlist-image"
-                src={playlist.image.url}
-                alt="playlist-avatar"
-              />
-               <div className="view-wrapper">
-                <Link to={`/playlist/${playlist.id}`} ><BsEyeFill className="view-icon" /></Link>
-                
-              </div>
-              </div>
-              <div className="playlist-info">
-                <h3 className="playlist-title">{playlist.name}</h3>
-                <h5 className="number-of-tracks">{playlist.length} Tracks</h5>
-              </div>
-             
-            </div>
-          ))) : <Loader/>}
+
+        {(function () {
+          switch (playLists && playLists.length) {
+            case 0:
+              return (<div className="nothing-wrapper">
+                <h1 className="nosave">No playlist found.</h1>
+              </div>)
+              default: 
+              return (playLists ? (playLists.map((playlist) => (
+                <div className="playlist-items" key={playlist.uri}>
+                  <div className="image-wrapper">
+                  <img
+                    className="playlist-image"
+                    src={playlist.image.url}
+                    alt="playlist-avatar"
+                  />
+                   <div className="view-wrapper">
+                    <Link to={`/playlist/${playlist.id}`} ><BsEyeFill className="view-icon" /></Link>
+                    
+                  </div>
+                  </div>
+                  <div className="playlist-info">
+                    <h3 className="playlist-title">{playlist.name}</h3>
+                    <h5 className="number-of-tracks">{playlist.length} Tracks</h5>
+                  </div>
+                 
+                </div>
+              ))): <Loader/> )
+          }
+        })()}
+        
       </div>
     </div>
   );
