@@ -1,4 +1,4 @@
-import Search from "../components/Search";
+
 import { getRecentlyPlayed } from "../Spotify";
 import { useState, useEffect } from "react";
 import { catchErrors, formatDuration } from "../utilities";
